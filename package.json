@@ -1,0 +1,27 @@
+{
+  "name": "telegram-purlfy",
+  "version": "1.0.0",
+  "description": "A Telegram bot to purify your links",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRO-2684/Telegram-pURLfy.git"
+  },
+  "keywords": [
+    "Telegram",
+    "pURLfy",
+    "purify"
+  ],
+  "author": "PRO-2684",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/PRO-2684/Telegram-pURLfy/issues"
+  },
+  "homepage": "https://github.com/PRO-2684/Telegram-pURLfy#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.65.1"
+  }
+}
