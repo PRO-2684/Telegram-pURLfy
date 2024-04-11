@@ -63,7 +63,10 @@ async function handleFallback(msg) {
 }
 
 async function handleStart(msg) {
-    bot.sendMessage(msg.chat.id, "😘 Hello, I can help you to purify your links. Simply send them to me or reply to the message containing the links with command /purify.", { "reply_parameters": { "message_id": msg.message_id } });
+    bot.sendMessage(msg.chat.id, "😘 Hello, I can help you to purify your links\\. Simply send them to me or reply to the message containing the links with command /purify\\.\n🫣 However, do note that your messages might be logged, so **DO NOT share sensitive links** with me\\.", {
+        "parse_mode": "MarkdownV2",
+        "reply_parameters": { "message_id": msg.message_id }
+    });
 }
 
 async function handlePurify(msg) {
