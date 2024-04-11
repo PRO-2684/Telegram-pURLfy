@@ -70,26 +70,26 @@ async function handleStart(msg) {
 }
 
 async function handlePurify(msg) {
-    const chatId = msg.chat.id;
-    let urls = extractUrls(msg);
-    if (msg.reply_to_message) {
-        const replyUrls = extractUrls(msg.reply_to_message);
-        urls = replyUrls.concat(urls);
-    }
-    const charsBefore = purifier.getStatistics().char;
-    const purified = await purifyUrls(urls);
-    const charsAfter = purifier.getStatistics().char;
-    let result = "";
-    if (urls.length > 0) {
-        for (let i = 0; i < urls.length; i++) {
-            result += `\\- [original](${tgEscapeUrl(urls[i])}) \\-\\> [purified](${tgEscapeUrl(purified[i].url)}), rule "${tgEscape(purified[i].rule)}"\n`;
-        }
-        result += `🧹 Purified ${formatWord(urls.length, "url")}, removed ${formatWord(charsAfter - charsBefore, "character")}, hooray 🎉`;
-    } else {
-        result = "🫥 No links found\\.";
-    }
-    // send a message to the chat acknowledging receipt of their message
     try {
+        const chatId = msg.chat.id;
+        let urls = extractUrls(msg);
+        if (msg.reply_to_message) {
+            const replyUrls = extractUrls(msg.reply_to_message);
+            urls = replyUrls.concat(urls);
+        }
+        const charsBefore = purifier.getStatistics().char;
+        const purified = await purifyUrls(urls);
+        const charsAfter = purifier.getStatistics().char;
+        let result = "";
+        if (urls.length > 0) {
+            for (let i = 0; i < urls.length; i++) {
+                result += `\\- [original](${tgEscapeUrl(urls[i])}) \\-\\> [purified](${tgEscapeUrl(purified[i].url)}), rule "${tgEscape(purified[i].rule)}"\n`;
+            }
+            result += `🧹 Purified ${formatWord(urls.length, "url")}, removed ${formatWord(charsAfter - charsBefore, "character")}, hooray 🎉`;
+        } else {
+            result = "🫥 No links found\\.";
+        }
+        // send a message to the chat acknowledging receipt of their message
         log("Reply:", result);
         bot.sendMessage(chatId, result, {
             "parse_mode": "MarkdownV2",
@@ -140,7 +140,7 @@ function extractUrls(msg) {
     const text = msg.text;
     if (!text) return [];
     const urls = [];
-    for (const entity of msg.entities) {
+    for (const entity of (msg.entities ?? [])) {
         if (entity.type === "url") {
             const end = entity.offset + entity.length;
             const url = text.slice(entity.offset, end);
