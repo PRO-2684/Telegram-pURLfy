@@ -59,11 +59,11 @@ const map = {
 };
 
 async function handleFallback(msg) {
-    bot.sendMessage(msg.chat.id, "I cannot understand your command. Try using /help for a list of commands.", { "reply_parameters": { "message_id": msg.message_id } });
+    bot.sendMessage(msg.chat.id, "😣 I cannot understand your command. Try using /help for a list of commands.", { "reply_parameters": { "message_id": msg.message_id } });
 }
 
 async function handleStart(msg) {
-    bot.sendMessage(msg.chat.id, "Hello, I can help you to purify your links. Simply send them to me or reply to the message containing the links with command /purify.", { "reply_parameters": { "message_id": msg.message_id } });
+    bot.sendMessage(msg.chat.id, "😘 Hello, I can help you to purify your links. Simply send them to me or reply to the message containing the links with command /purify.", { "reply_parameters": { "message_id": msg.message_id } });
 }
 
 async function handlePurify(msg) {
@@ -81,9 +81,9 @@ async function handlePurify(msg) {
         for (let i = 0; i < urls.length; i++) {
             result += `\\- [original](${tgEscapeUrl(urls[i])}) \\-\\> [purified](${tgEscapeUrl(purified[i].url)}), rule "${tgEscape(purified[i].rule)}"\n`;
         }
-        result += `🪄 Purified ${formatWord(urls.length, "url")}, removed ${formatWord(charsAfter - charsBefore, "character")}\\.`;
+        result += `🧹 Purified ${formatWord(urls.length, "url")}, removed ${formatWord(charsAfter - charsBefore, "character")}, hooray 🎉`;
     } else {
-        result = "No links found\\.";
+        result = "🫥 No links found\\.";
     }
     // send a message to the chat acknowledging receipt of their message
     try {
@@ -95,7 +95,7 @@ async function handlePurify(msg) {
         });
     } catch (e) {
         console.error(e);
-        bot.sendMessage(chatId, "An error occured while processing your request.", {
+        bot.sendMessage(chatId, "🥺 An error occured while processing your request.", {
             "reply_parameters": { "message_id": msg.message_id }
         });
     }
