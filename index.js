@@ -47,7 +47,7 @@ bot.on('text', async (msg) => {
         const handler = map[command] ?? handleFallback;
         handler(msg);
     } else {
-        handleFallback(msg);
+        handlePurify(msg); // Default to purify URLs
     }
 });
 
