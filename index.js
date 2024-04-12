@@ -136,6 +136,11 @@ function tgEscape(text) {
     return result;
 }
 
+function validUrl(url) {
+    const isHTTP = url.startsWith("http://") || url.startsWith("https://");
+    return isHTTP && URL.canParse(url);
+}
+
 function extractUrls(msg) {
     const text = msg.text;
     if (!text) return [];
@@ -144,10 +149,9 @@ function extractUrls(msg) {
         if (entity.type === "url") {
             const end = entity.offset + entity.length;
             const url = text.slice(entity.offset, end);
-            log(`Parsed URL: [${entity.offset}, ${end}) ${url}`);
-            urls.push(url);
+            validUrl(url) && urls.push(url);
         } else if (entity.type === "text_link") {
-            urls.push(entity.url);
+            validUrl(entity.url) && urls.push(entity.url);
         }
     }
     return urls;
