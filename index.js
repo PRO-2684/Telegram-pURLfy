@@ -70,8 +70,8 @@ async function handleStart(msg) {
 }
 
 async function handlePurify(msg) {
+    const chatId = msg.chat.id;
     try {
-        const chatId = msg.chat.id;
         let urls = extractUrls(msg);
         if (msg.reply_to_message) {
             const replyUrls = extractUrls(msg.reply_to_message);
