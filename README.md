@@ -8,7 +8,7 @@ A Telegram bot to purify your links, based on [pURLfy core](https://github.com/P
 
 1. Clone the repo
 2. Install dependencies with `npm install --save node-telegram-bot-api`
-3. Get `purlfy.js` and `rules/` at [pURLfy core](https://github.com/PRO-2684/pURLfy/) and [pURLfy rules](https://github.com/PRO-2684/pURLfy-rules/)
+3. Get `purlfy.js` and `rules/` at [pURLfy core](https://github.com/PRO-2684/pURLfy/) and [pURLfy rules](https://github.com/PRO-2684/pURLfy-rules/) (You can try out `update.sh` if you're lazy)
 4. Create `config.json` with following key(s):
     - `token`: Your bot token, **required**
     - Todo...
