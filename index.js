@@ -12,7 +12,7 @@ const log = (...args) => {
 // pURLfy init
 const purifier = new Purlfy({
     lambdaEnabled: true,
-    redirectEnabled: true
+    fetchEnabled: true
 });
 for (const rulesFile of fs.readdirSync(rulesPath)) {
     const content = fs.readFileSync(path.join(rulesPath, rulesFile));
